@@ -4,10 +4,10 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "abk_fileops.h"
-#include "abk_log.h"
-#include "abk_menus.h"
-#include "abk.h"
+#include "address_book_fops.h" //Previously was "abk_fileops.h"
+//#include "abk_log.h" 	Unsure what this is for, however we do not have this file and it is causing errors in the meantime.
+#include "address_book_menu.h" //Previously was "abk_menus.h"
+#include "address_book.h" //Previously was "abk.k"
 
 int get_option(int type, const char *msg)
 {

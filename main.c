@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdio_ext.h>
+//#include <stdio_ext.h> Commented out as per professor's instructions on Teams
 #include <stdlib.h>
 #include <string.h>
 
