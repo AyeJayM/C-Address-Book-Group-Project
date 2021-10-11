@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
+//#include <unistd.h> This is commented out per proffesor's instructions on Teams
 #include <sys/stat.h>
 #include <errno.h>
 #include <ctype.h>
