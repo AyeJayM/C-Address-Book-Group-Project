@@ -131,9 +131,91 @@ Status menu(AddressBook *address_book)
 	return e_success;
 }
 
-Status add_contacts(AddressBook *address_book)
+Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 {
+	ContactInfo newContact;
+
 	/* Add the functionality for adding contacts here */
+	printf("\nWelcome to the add contact process. Please follow along with the instuctions and"
+			" provide a name, phone number, and email address for the contact.\n");
+
+	printf("\nPlease provide the name of the contact.\n");
+	gets(newContact.name);
+
+
+	prinf("\nHow many phone numbers do you have for this contact. Max allowed is 5.\n");
+	int numOfPhones;						//Holds number of phone numbers for loop
+	gets(numOfPhones);
+
+	while (numOfPhones < 0 || numOfPhones > 5)
+	{
+		prinf("\nSorry, that is not a valid input. Please enter a value from 0 to 5.\n");
+		gets(numOfPhones);
+	}
+
+
+	if (numOfPhones > 0)
+	{
+		for (int i = 0; 0 < numOfPhones; i++)
+		{
+			printf("\nPlease provide phone number: %d out of %d for the contact.", ( i + 1 ), numOfPhones);
+			gets(newContact.phone_numbers[i]);
+		}
+	}
+
+
+	prinf("\nHow many phone numbers do you have for this contact. Max allowed is 5.\n");
+	int numOfEmails; 					//Holds number of email addresses for loop
+	gets (numOfEmails);
+
+	while (numOfEmails < 0 || numOfEmails > 5)
+	{
+		prinf("\nSorry, that is not a valid input. Please enter a value from 0 to 5.\n");
+		gets(numOfEmails);
+	}
+
+
+	if (numOfEmails > 0)
+	{
+		for (int i = 0; 0 < numOfEmails; i++)
+		{
+			printf("\nPlease provide phone number: %d out of %d for the contact.", ( i + 1 ), numOfEmails);
+			gets(newContact.email_addresses[i]);
+		}
+	}
+
+
+	printf("All set! Saving..."); 		//Now we write to the CSV file
+
+
+
+	FILE *fp;
+	fp = fopen("addressbook.csv", "a+");
+
+	fprintf(fp, "%s", newContact.name);
+	fprintf(fp, ",");					//Print a "," because its a CSV file
+	
+
+	if (numOfPhones > 0)
+	{
+		for (int PhoneCntr = 0; 0 < numOfPhones; PhoneCntr++)
+		{
+		fprintf(fp, "%s", newContact.phone_numbers[PhoneCntr]);
+		fprintf(fp, ",");
+		}
+	}
+
+
+	if (numOfEmails > 0)
+	{
+		for (int EmailCntr = 0; 0 < numOfEmails; EmailCntr++)
+		{
+		fprintf(fp, "%s", newContact.email_addresses[EmailCntr]);
+		fprintf(fp, ",");
+		}
+	}
+
+
 }
 
 Status search(const char *str, AddressBook *address_book, int loop_count, int field, const char *msg, Modes mode)
