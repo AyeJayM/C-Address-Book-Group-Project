@@ -9,6 +9,10 @@
 #include "address_book_menu.h" //Previously was "abk_menus.h"
 #include "address_book.h" //Previously was "abk.k"
 
+
+
+
+
 int get_option(int type, const char *msg)
 {
 	/*
@@ -21,7 +25,7 @@ int get_option(int type, const char *msg)
 	/* Fill the code to add above functionality */
 }
 
-Status save_prompt(AddressBook *address_book)
+/*Status save_prompt(AddressBook *address_book)
 {
 	char option;
 
@@ -44,6 +48,9 @@ Status save_prompt(AddressBook *address_book)
 
 	return e_success;
 }
+*/
+
+
 
 Status list_contacts(AddressBook *address_book, const char *title, int *index, const char *msg, Modes mode)
 {
@@ -55,6 +62,10 @@ Status list_contacts(AddressBook *address_book, const char *title, int *index, c
 
 	return e_success;
 }
+
+
+
+
 /* FOR DEBUG ////////////////////////
 void menu_header(const char *str)
 {
@@ -69,7 +80,11 @@ void menu_header(const char *str)
 	}
 }
 */////////////////////////
-void main_menu(void)
+
+
+
+
+/*void main_menu(void) /////////////// DEBUG
 {
 	menu_header("Features:\n");
 
@@ -83,7 +98,12 @@ void main_menu(void)
 	printf("\n");
 	printf("Please select an option: ");
 }
+*/
 
+
+
+///////////////////////////// DEBUG
+/*
 Status menu(AddressBook *address_book)
 {
 	ContactInfo backup;
@@ -106,7 +126,7 @@ Status menu(AddressBook *address_book)
 		switch (option)
 		{
 			case e_add_contact:
-				/* Add your implementation to call add_contacts function here */
+				// Add your implementation to call add_contacts function here
 				break;
 			case e_search_contact:
 				search_contact(address_book);
@@ -119,7 +139,7 @@ Status menu(AddressBook *address_book)
 				break;
 			case e_list_contacts:
 				break;
-				/* Add your implementation to call list_contacts function here */
+				// Add your implementation to call list_contacts function here
 			case e_save:
 				save_file(address_book);
 				break;
@@ -130,29 +150,31 @@ Status menu(AddressBook *address_book)
 
 	return e_success;
 }
+*/ ////////////////
+
 
 Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 {
-	//ContactInfo newContact;
 	
 	/* Add the functionality for adding contacts here */
 	printf("\nWelcome to the add contact process. Please follow along with the instuctions and"
-			" provide a name, phone number, and email address for the contact.\n");
+			" provide a name, phone numbers, and email address for the contact.\n");
 
 	printf("\nPlease provide the name of the contact.\n");
-	char inputName[1][32];
+	char inputName[32];
 
-	
+	//fgets(&address_book->list->name[0], 32, stdin);
+	//scanf("%s", *address_book->list->name[0]);
+	fgets(inputName, 32, stdin);
 
-	gets(address_book->list->name[0]);
+	strcpy(address_book->list->name, inputName);
 
-	printf("%s", address_book->list->name); //Testing to see if the name got assigned correctly
 
 
 
 	printf("\nHow many phone numbers do you have for this contact. Max allowed is 5.\n");
 	int numOfPhones;						//Holds number of phone numbers for loop
-	fscanf(stdin, "%d", &numOfPhones);
+	scanf("%d", &numOfPhones);
 
 	while (numOfPhones < 0 || numOfPhones > 5)
 	{
@@ -167,13 +189,14 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 		{
 			printf("\nPlease provide phone number: %d out of %d for the contact.", ( i + 1 ), numOfPhones);
 			fscanf(stdin, "%d", address_book->list->phone_numbers[i]); //Accepts inputted numbers from the user
+							//FIX THIS ^^^^^^^^^^^^^^^^^^^^^^^
 		}
 	}
 
 
 	printf("\nHow many phone numbers do you have for this contact. Max allowed is 5.\n");
 	int numOfEmails; 					//Holds number of email addresses for loop
-	fscanf(stdin, "%d", &numOfEmails);
+	scanf("%d", &numOfEmails);
 
 	while (numOfEmails < 0 || numOfEmails > 5)
 	{
