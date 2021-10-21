@@ -159,11 +159,9 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 {
 	/* Add the functionality for adding contacts here */
 
-	printf("\n######		Address Book	######\n"
-		     "######          Add Contact:");
-
 	ContactInfo newContact;
 	int addMenuChoice;
+	int nameChoice  = 0; //Determines when to display name.
 	int phoneChoice = 0; //Determines which Phone Number will be next entered and displayed
 	int emailChoice = 0; //Determines which Email will be next entered and displayed
 
@@ -172,49 +170,80 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 
 	while(addMenuChoice != 0)
 	{
-	
-	printf("\n0. Back\n"
-		   "1. Name		:%s\n"
-		   "2. Phone No 1 	:%s\n", newContact.name[0], newContact.phone_numbers[0]);
+	printf("\n######  Address Book  ######\n"
+		     "######  Add Contact Menu:");
+
+
+	printf("\n\n0. Back\n");
+
+	if(nameChoice == 0)
+		{
+			 printf("1. Name	       :\n");
+		}
+
+		   if(nameChoice > 0)
+			{
+			   printf("1. Name	       :  %s\n", newContact.name[0]);
+			}
+		
+
+	if (phoneChoice == 0)
+		{
+			printf("2. Phone No 1  :\n");
+		}
 
 		   if ( phoneChoice > 0 )
 		   {
-			   printf("Phone No 2   :%s\n", newContact.phone_numbers[1]);
+			   printf("2. Phone No 1  :  %s\n", newContact.phone_numbers[0]);
 
 			   if ( phoneChoice > 1 )
 		   		{
-			   		printf("Phone No 3   :%s\n", newContact.phone_numbers[2]);
+			   		printf("   Phone No 2  :  %s\n", newContact.phone_numbers[1]);
 
 					if ( phoneChoice > 2 )
 		   			{
-			   			printf("Phone No 4   :%s\n", newContact.phone_numbers[3]);
+			   			printf("   Phone No 3  :  %s\n", newContact.phone_numbers[2]);
 
 						if ( phoneChoice > 3 )
 		   				{
-			   				printf("Phone No 5   :%s\n", newContact.phone_numbers[4]);
+			   				printf("   Phone No 4  :  %s\n", newContact.phone_numbers[3]);
+
+							if ( phoneChoice > 4 )
+							{
+								printf("   Phone No 5  :  %s\n", newContact.phone_numbers[4]);
+							}
 		   				}
 
 		   			}
 		   		}
 		   }
 		
-	printf("3. Email ID 1   :%s\n", newContact.email_addresses[0]);
+		
+	if( emailChoice == 0)
+		{
+			printf("3. Email ID 1  :");
+		}
 
 			if ( emailChoice > 0 )
 		   {
-			   printf("Email ID 2   :%s\n", newContact.phone_numbers[1]);
+			   printf("3. Email ID 1  :  %s\n", newContact.email_addresses[0]);
 
 			   if ( emailChoice > 1 )
 		   		{
-			   		printf("Email ID 3   :%s\n", newContact.phone_numbers[2]);
+			   		printf("   Email ID 2  :  %s\n", newContact.email_addresses[1]);
 
 					if ( emailChoice > 2 )
 		   			{
-			   			printf("Email ID 4   :%s\n", newContact.phone_numbers[3]);
+			   			printf("   Email ID 3  :  %s\n", newContact.email_addresses[2]);
 
 						if ( emailChoice > 3 )
 		   				{
-			   				printf("Email ID 5   :%s\n", newContact.phone_numbers[4]);
+			   				printf("   Email ID 4  :  %s\n", newContact.email_addresses[3]);
+
+							if ( emailChoice > 4 )
+							{
+								printf("   Email ID 5  :  %s\n", newContact.email_addresses[4]);
+							}
 		   				}
 
 		   			}
@@ -239,8 +268,8 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 
 	if(addMenuChoice == 1) //Add a name
 	{
-
-		printf("Enter the contact Name: ");
+		nameChoice++;
+		printf("Enter the contact name: ");
 		scanf("%s", newContact.name[0]);
 	}
 
@@ -285,7 +314,7 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 		if(phoneChoice > 5)
 		{
 			printf("\nSorry, you cannot add more than 5 phone numbers. "
-			"Should you wish to change a number, please use the edit contact function.");
+			"Should you wish to change a number, please use the edit contact function.\n");
 		}
 
 	}
@@ -332,7 +361,7 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 		if(emailChoice > 5)
 		{
 			printf("\nSorry, you cannot add more than 5 email addresses. "
-			"Should you wish to change an email, please use the edit contact function.");
+			"Should you wish to change an email, please use the edit contact function.\n");
 		}
 
 	}
