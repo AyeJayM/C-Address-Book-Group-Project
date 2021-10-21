@@ -171,8 +171,9 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	while(addMenuChoice != 0)
 	{
 	printf("\n######  Address Book  ######\n"
-		     "######  Add Contact Menu:");
+		     "######  Add Contact Menu:\n");
 
+	printf("\nChoosing back will save the newly added contact!\n");
 
 	printf("\n\n0. Back\n");
 
@@ -315,6 +316,7 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 		{
 			printf("\nSorry, you cannot add more than 5 phone numbers. "
 			"Should you wish to change a number, please use the edit contact function.\n");
+			phoneChoice = 5; //Ensures no odd behavior when doing the write loop to the CSV file
 		}
 
 	}
@@ -362,6 +364,7 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 		{
 			printf("\nSorry, you cannot add more than 5 email addresses. "
 			"Should you wish to change an email, please use the edit contact function.\n");
+			emailChoice = 5; //Ensures no odd behavior during write loop
 		}
 
 	}
@@ -373,15 +376,12 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	} //Closing Bracket for While Loop
 
 
-	printf("All set! Saving..."); 		//Now we write to the CSV file
+	printf("\nAll set! Saving...\n"); 		//Now we write to the CSV file
 
 
 	address_book->list = &newContact; //This saves the contact
 
-	//printf("%s", address_book->list->name[0]); //This ensures the name was saved
-
-
-
+	
 	//Open the file in passed Address_Book
 	address_book->fp = fopen("addressbook.csv", "a+");
 	
@@ -390,39 +390,42 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	fprintf(address_book->fp, "%s", address_book->list->name[0]);
 	fprintf(address_book->fp, ",");					//Print a "," because its a CSV file
 	
-	fclose(address_book->fp);
 
-/*
+
+	
 	if (phoneChoice > 0) //Print the phone numbers to the file
 	{
-		for (int PhoneCntr = 0; 0 < phoneChoice; PhoneCntr++)
-		{
-		fprintf(address_book->fp, "%s", newContact.phone_numbers[PhoneCntr]);
-		fprintf(address_book->fp, ",");
-		}
+		
+		for (int i = 0; i < phoneChoice; i++)
+			{		
+				fprintf(address_book->fp, "%s", address_book->list->phone_numbers[i]);
+				fprintf(address_book->fp, ",");
+			}
 	}
 
 
 	if (emailChoice > 0) //Print the emails to the file
 	{
-		for (int EmailCntr = 0; 0 < emailChoice; EmailCntr++)
+		for (int j = 0; j < emailChoice; j++)
 		{
-		fprintf(address_book->fp, "%s", newContact.email_addresses[EmailCntr]);
+		fprintf(address_book->fp, "%s", newContact.email_addresses[j]);
 		fprintf(address_book->fp, ",");
 		}
 	}
+	
 
 
-	fprintf(address_book->fp, "%d", newContact.si_no); //Print si_no to the file
+	fprintf(address_book->fp, "%d", address_book->list->si_no); //Print si_no to the file
 	fprintf(address_book->fp, ",");
 
+	
 
 
-	fprintf(address_book->fp, "%s", NEXT_ENTRY); //Prints a \n to the CSV file
+	fprintf(address_book->fp, "%s", "\n"); //Prints a \n to the CSV file
 
+	fclose(address_book->fp); //Close the file
 
-
- 	fclose(address_book->fp); //Close the file*/
+ 	
 }
 
 
