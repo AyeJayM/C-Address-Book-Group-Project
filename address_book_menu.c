@@ -376,7 +376,7 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	printf("All set! Saving..."); 		//Now we write to the CSV file
 
 
-	//address_book->list = &newContact; //This saves the contact
+	address_book->list = &newContact; //This saves the contact
 
 	//printf("%s", address_book->list->name[0]); //This ensures the name was saved
 
@@ -384,13 +384,15 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 
 	//Open the file in passed Address_Book
 	address_book->fp = fopen("addressbook.csv", "a+");
-
-
-	//Print the name of the contact to the file
-	fprintf(address_book->fp, "%s", newContact.name[0]);
-	fprintf(address_book->fp, ",");					//Print a "," because its a CSV file
 	
 
+	//Print the name of the contact to the file
+	fprintf(address_book->fp, "%s", address_book->list->name[0]);
+	fprintf(address_book->fp, ",");					//Print a "," because its a CSV file
+	
+	fclose(address_book->fp);
+
+/*
 	if (phoneChoice > 0) //Print the phone numbers to the file
 	{
 		for (int PhoneCntr = 0; 0 < phoneChoice; PhoneCntr++)
@@ -420,7 +422,7 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 
 
 
- 	fclose(address_book->fp); //Close the file
+ 	fclose(address_book->fp); //Close the file*/
 }
 
 
