@@ -137,64 +137,118 @@ Status add_contacts(AddressBook *address_book)
 }
 
 Status search(const char *str, AddressBook *address_book, int loop_count, int field, const char *msg, Modes mode)
-{			// word(phone/name/etc)       //array         //????		//type (phone etc)
+{	
 	/* Add the functionality for adding contacts here */
-	switch(field){
-		
-		case 1: 
-			//Search for name
-			break;
-		
-		case 2:
-			//phone no.
-			break;
-		case 3:
-			//email
-			break;
-		case 4:
-			//serail no.
-		default:
-			printf("Selected: Back........\nReturning to main menu....\n");
-			break;
-
-	}
+	
 }
 
 Status search_contact(AddressBook *address_book)
 {
-	/* Add the functionality for search contacts here */
+	char str[255];
+	char line[255];
 	printf("######## Search Contact: \n\n");
 	printf("0. Back\n");
 	printf("1. Name\n");
 	printf("2. Phone No\n");
 	printf("3. Email ID\n");
-	printf("4. Serial No");
+	printf("4. Serial No\n");
 
 	int contactNo;
-	scanf("%d", contactNo);
+	gets(contactNo);
+
+	FILE *fp;
+	fopen(address_book, "r");
+	if(fp == NULL){
+		printf("File is empty or does not exist.\n");
+		return e_no_match;
+	}
 
 	switch(contactNo){
 		
+		case 0:
+			printf("Selected: Back........\nReturning to main menu....\n");
+			return e_back;
 		case 1: 
 			//Search for name
-			printf("Please enter the name of the contact you want to search for:\n");
-			break;
+			printf("Enter the Name:\n");
+			gets(str);
+			char temp[255];
+			
+			
+			for(int i =0; i< sizeof fp +1; i++){
+				fscanf(fp, "%s", temp);
+				if(strcmp(str, temp)== 0){
+					break;
+					
+				}
+			}
+			//if we come out of this it means it wasn't found
+			return e_fail;
 		
 		case 2:
 			//phone no.
-			break;
+			printf("Please enter the PHONE NUMBER of the contact you want to search for:\n");
+			gets(str);
+			char temp[255];
+			
+			
+			for(int i =0; i< sizeof fp +1; i++){
+				fscanf(fp, "%s", temp);
+				if(strcmp(str, temp)== 0){
+					break;
+					
+				}
+			}
+			return e_no_match;
 		case 3:
 			//email
-			break;
+			printf("Please enter the EMAIL of the contact you want to search for:\n");
+			gets(str);
+			char temp[255];
+			
+			
+			for(int i =0; i< sizeof fp +1; i++){
+				fscanf(fp, "%s", temp);
+				if(strcmp(str, temp)== 0){
+					break;
+					
+				}
+			}
+			return e_no_match;
+			
 		case 4:
 			//serail no.
+			printf("Please enter the SERIAL NUMBER of the contact you want to search for:\n");
+			gets(str);
+			
+			char temp[255];
+			
+			for(int i =0; i< sizeof fp +1; i++){
+				//word by word
+				fscanf(fp, "%s", temp);
+				if(strcmp(str, temp)== 0){
+					break;
+					
+				}
+			}
+			return e_no_match;
+
 		default:
-			printf("Selected: Back........\nReturning to main menu....\n");
-			break;
+			
+			if(contactNo < 0 || contactNo > 4){
+				printf("This is an invalid number.");
+				//recursively calls it.
+				search_contact(address_book);
+				break;
+			}
+
 
 	}
 	
+	//print out contact
 
+	fgets(line, "%s", address_book);
+	return e_success;
 	
 }
 
