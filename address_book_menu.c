@@ -8,7 +8,7 @@
 //#include "abk_log.h" 	Unsure what this is for, however we do not have this file and it is causing errors in the meantime.
 #include "address_book_menu.h" //Previously was "abk_menus.h"
 #include "address_book.h" //Previously was "abk.k"
-
+extern int ContactID;
 
 
 
@@ -159,13 +159,16 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 {
 	/* Add the functionality for adding contacts here */
 
-	prinf("\n######		Address Book	######\n"
-		  "######  		Add Contact:");
+	printf("\n######		Address Book	######\n"
+		     "######          Add Contact:");
 
 	ContactInfo newContact;
 	int addMenuChoice;
 	int phoneChoice = 0; //Determines which Phone Number will be next entered and displayed
 	int emailChoice = 0; //Determines which Email will be next entered and displayed
+
+	ContactID++;
+	newContact.si_no = ContactID;
 
 	while(addMenuChoice != 0)
 	{
@@ -222,12 +225,12 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	
 	printf("\n\nPlease select an option: ");
 	
-	scanf("%d", addMenuChoice);	//User inputs their menu choice
+	scanf("%d", &addMenuChoice);	//User inputs their menu choice
 
 	while(addMenuChoice > 3 || addMenuChoice < 0) //Validate Menu Input
 	{
 		printf("\nThat is not a valid menu choice. Please enter your selection again.\n");
-		scanf("%d", addMenuChoice);
+		scanf("%d", &addMenuChoice);
 	}
 
 

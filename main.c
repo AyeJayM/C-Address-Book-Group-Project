@@ -7,6 +7,8 @@
 #include "address_book_fops.h"
 #include "address_book_menu.h"
 
+int ContactID = 0;
+
 int main(void)
 {
 	AddressBook address_book;
