@@ -12,18 +12,20 @@
 
 
 
-
+/*
 int get_option(int type, const char *msg)
 {
-	/*
+	
 	 * Mutilfuction user intractions like
 	 * Just an enter key detection
 	 * Read an number
 	 * Read a charcter
-	 */ 
+	  
 
-	/* Fill the code to add above functionality */
+	//Fill the code to add above functionality 
 }
+*/
+
 
 /*Status save_prompt(AddressBook *address_book)
 {
@@ -51,18 +53,18 @@ int get_option(int type, const char *msg)
 */
 
 
-
+/*
 Status list_contacts(AddressBook *address_book, const char *title, int *index, const char *msg, Modes mode)
 {
-	/* 
+	
 	 * Add code to list all the contacts availabe in address_book.csv file
 	 * Should be menu based
 	 * The menu provide navigation option if the entries increase the page size
-	 */ 
+	 
 
 	return e_success;
 }
-
+/*
 
 
 
@@ -155,19 +157,94 @@ Status menu(AddressBook *address_book)
 
 Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 {
-	
 	/* Add the functionality for adding contacts here */
-	printf("\nWelcome to the add contact process. Please follow along with the instuctions and"
-			" provide a name, phone numbers, and email address for the contact.\n");
+
+	prinf("\n######		Address Book	######\n"
+		  "######  		Add Contact:");
+
+	ContactInfo newContact;
+	int addMenuChoice;
+
+	while(addMenuChoice != 0)
+	{
+	
+	printf("\n0. Back\n"
+		   "1. Name		:%s\n"
+		   "2. Phone No 1 	:%s\n", newContact.name[0], newContact.phone_numbers[0]);
+
+		   if ( newContact.phone_numbers[1] != NULL )
+		   {
+			   printf("Phone No 2   :%s\n", newContact.phone_numbers[1]);
+
+			   if ( newContact.phone_numbers[2] != NULL )
+		   		{
+			   		printf("Phone No 3   :%s\n", newContact.phone_numbers[2]);
+
+					if ( newContact.phone_numbers[3] != NULL )
+		   			{
+			   			printf("Phone No 4   :%s\n", newContact.phone_numbers[3]);
+
+						if ( newContact.phone_numbers[4] != NULL )
+		   				{
+			   				printf("Phone No 5   :%s\n", newContact.phone_numbers[4]);
+		   				}
+
+		   			}
+		   		}
+		   }
+		
+	printf("3. Email ID 1   :%s\n", newContact.email_addresses[0]);
+
+			if ( newContact.email_addresses[1] != NULL )
+		   {
+			   printf("Email ID 2   :%s\n", newContact.phone_numbers[1]);
+
+			   if ( newContact.email_addresses[2] != NULL )
+		   		{
+			   		printf("Email ID 3   :%s\n", newContact.phone_numbers[2]);
+
+					if ( newContact.email_addresses[3] != NULL )
+		   			{
+			   			printf("Email ID 4   :%s\n", newContact.phone_numbers[3]);
+
+						if ( newContact.email_addresses[4] != NULL )
+		   				{
+			   				printf("Email ID 5   :%s\n", newContact.phone_numbers[4]);
+		   				}
+
+		   			}
+		   		}
+		   }
+
+	
+	
+	printf("\n\nPlease select an option: ");
+	
+	scanf("%d", addMenuChoice);
+
+	while(addMenuChoice < 3 || addMenuChoice > 0)
+	{
+		printf("\nThat is not a valid menu choice. Please enter your selection again.\n");
+		scanf("%d", addMenuChoice);
+	}
+
+	if(addMenuChoice == 1)
+	{
+
+		printf("Enter the contact Name: ");
+		scanf("%s", newContact.name[0]);
+	}
+
+	}
+
 
 	printf("\nPlease provide the name of the contact.\n");
-	char inputName[32];
 
-	//fgets(&address_book->list->name[0], 32, stdin);
-	//scanf("%s", *address_book->list->name[0]);
-	fgets(inputName, 32, stdin);
+	scanf("%s", newContact.name[0]);
 
-	strcpy(address_book->list->name, inputName);
+	address_book->list = &newContact; //This saves the contact
+
+	printf("%s", address_book->list->name[0]); //This ensures the name was saved
 
 
 
@@ -187,9 +264,10 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	{
 		for (int i = 0; 0 < numOfPhones; i++)
 		{
-			printf("\nPlease provide phone number: %d out of %d for the contact.", ( i + 1 ), numOfPhones);
-			fscanf(stdin, "%d", address_book->list->phone_numbers[i]); //Accepts inputted numbers from the user
+			printf("\nPlease provide phone number: %d out of %d for the contact.\n", ( i + 1 ), numOfPhones);
+			//scanf("%d", address_book->list->phone_numbers[i]); //Accepts inputted numbers from the user
 							//FIX THIS ^^^^^^^^^^^^^^^^^^^^^^^
+			scanf("%d", address_book->list->phone_numbers[i]);
 		}
 	}
 
