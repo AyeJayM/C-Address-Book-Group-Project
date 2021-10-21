@@ -164,6 +164,8 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 
 	ContactInfo newContact;
 	int addMenuChoice;
+	int phoneChoice = 0; //Determines which Phone Number will be next entered and displayed
+	int emailChoice = 0; //Determines which Email will be next entered and displayed
 
 	while(addMenuChoice != 0)
 	{
@@ -172,19 +174,19 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 		   "1. Name		:%s\n"
 		   "2. Phone No 1 	:%s\n", newContact.name[0], newContact.phone_numbers[0]);
 
-		   if ( newContact.phone_numbers[1] != NULL )
+		   if ( phoneChoice > 0 )
 		   {
 			   printf("Phone No 2   :%s\n", newContact.phone_numbers[1]);
 
-			   if ( newContact.phone_numbers[2] != NULL )
+			   if ( phoneChoice > 1 )
 		   		{
 			   		printf("Phone No 3   :%s\n", newContact.phone_numbers[2]);
 
-					if ( newContact.phone_numbers[3] != NULL )
+					if ( phoneChoice > 2 )
 		   			{
 			   			printf("Phone No 4   :%s\n", newContact.phone_numbers[3]);
 
-						if ( newContact.phone_numbers[4] != NULL )
+						if ( phoneChoice > 3 )
 		   				{
 			   				printf("Phone No 5   :%s\n", newContact.phone_numbers[4]);
 		   				}
@@ -195,19 +197,19 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 		
 	printf("3. Email ID 1   :%s\n", newContact.email_addresses[0]);
 
-			if ( newContact.email_addresses[1] != NULL )
+			if ( emailChoice > 0 )
 		   {
 			   printf("Email ID 2   :%s\n", newContact.phone_numbers[1]);
 
-			   if ( newContact.email_addresses[2] != NULL )
+			   if ( emailChoice > 1 )
 		   		{
 			   		printf("Email ID 3   :%s\n", newContact.phone_numbers[2]);
 
-					if ( newContact.email_addresses[3] != NULL )
+					if ( emailChoice > 2 )
 		   			{
 			   			printf("Email ID 4   :%s\n", newContact.phone_numbers[3]);
 
-						if ( newContact.email_addresses[4] != NULL )
+						if ( emailChoice > 3 )
 		   				{
 			   				printf("Email ID 5   :%s\n", newContact.phone_numbers[4]);
 		   				}
@@ -220,112 +222,183 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	
 	printf("\n\nPlease select an option: ");
 	
-	scanf("%d", addMenuChoice);
+	scanf("%d", addMenuChoice);	//User inputs their menu choice
 
-	while(addMenuChoice < 3 || addMenuChoice > 0)
+	while(addMenuChoice > 3 || addMenuChoice < 0) //Validate Menu Input
 	{
 		printf("\nThat is not a valid menu choice. Please enter your selection again.\n");
 		scanf("%d", addMenuChoice);
 	}
 
-	if(addMenuChoice == 1)
+
+	//////////////////////////////////////////////////////////
+
+
+	if(addMenuChoice == 1) //Add a name
 	{
 
 		printf("Enter the contact Name: ");
 		scanf("%s", newContact.name[0]);
 	}
 
-	}
+
+	//////////////////////////////////////////////////////////
 
 
-	printf("\nPlease provide the name of the contact.\n");
-
-	scanf("%s", newContact.name[0]);
-
-	address_book->list = &newContact; //This saves the contact
-
-	printf("%s", address_book->list->name[0]); //This ensures the name was saved
-
-
-
-
-	printf("\nHow many phone numbers do you have for this contact. Max allowed is 5.\n");
-	int numOfPhones;						//Holds number of phone numbers for loop
-	scanf("%d", &numOfPhones);
-
-	while (numOfPhones < 0 || numOfPhones > 5)
+	if(addMenuChoice == 2) //Add a phone number
 	{
-		printf("\nSorry, that is not a valid input. Please enter a value from 0 to 5.\n");
-		fscanf(stdin, "%d", &numOfPhones);
-	}
+		phoneChoice++;
 
-
-	if (numOfPhones > 0)
-	{
-		for (int i = 0; 0 < numOfPhones; i++)
+		if(phoneChoice == 1)
 		{
-			printf("\nPlease provide phone number: %d out of %d for the contact.\n", ( i + 1 ), numOfPhones);
-			//scanf("%d", address_book->list->phone_numbers[i]); //Accepts inputted numbers from the user
-							//FIX THIS ^^^^^^^^^^^^^^^^^^^^^^^
-			scanf("%d", address_book->list->phone_numbers[i]);
+			printf("\nPlease enter Phone Number 1: ");
+			scanf("%s", newContact.phone_numbers[0]);
 		}
-	}
 
-
-	printf("\nHow many phone numbers do you have for this contact. Max allowed is 5.\n");
-	int numOfEmails; 					//Holds number of email addresses for loop
-	scanf("%d", &numOfEmails);
-
-	while (numOfEmails < 0 || numOfEmails > 5)
-	{
-		printf("\nSorry, that is not a valid input. Please enter a value from 0 to 5.\n");
-		fscanf(stdin, "%d", &numOfEmails);
-	}
-
-
-	if (numOfEmails > 0)
-	{
-		for (int i = 0; 0 < numOfEmails; i++)
+		if(phoneChoice == 2)
 		{
-			printf("\nPlease provide phone number: %d out of %d for the contact.", ( i + 1 ), numOfEmails);
-			fscanf(stdin, "%d", address_book->list->email_addresses[i]); //Accept inputted emails from the user.
+			printf("\nPlease enter Phone Number 2: ");
+			scanf("%s", newContact.phone_numbers[1]);
 		}
+
+		if(phoneChoice == 3)
+		{
+			printf("\nPlease enter Phone Number 3: ");
+			scanf("%s", newContact.phone_numbers[2]);
+		}
+
+		if(phoneChoice == 4)
+		{
+			printf("\nPlease enter Phone Number 4: ");
+			scanf("%s", newContact.phone_numbers[3]);
+		}
+
+		if(phoneChoice == 5)
+		{
+			printf("\nPlease enter Phone Number 5: ");
+			scanf("%s", newContact.phone_numbers[4]);
+		}
+
+		if(phoneChoice > 5)
+		{
+			printf("\nSorry, you cannot add more than 5 phone numbers. "
+			"Should you wish to change a number, please use the edit contact function.");
+		}
+
 	}
+
+
+	//////////////////////////////////////////////////////////
+
+
+	if (addMenuChoice == 3) //Add an Email
+	{
+
+		emailChoice++;
+
+		if(emailChoice == 1)
+		{
+			printf("\nPlease enter Email 1: ");
+			scanf("%s", newContact.email_addresses[0]);
+		}
+
+		if(emailChoice == 2)
+		{
+			printf("\nPlease enter Email 2: ");
+			scanf("%s", newContact.email_addresses[1]);
+		}
+
+		if(emailChoice == 3)
+		{
+			printf("\nPlease enter Email 3: ");
+			scanf("%s", newContact.email_addresses[2]);
+		}
+
+		if(emailChoice == 4)
+		{
+			printf("\nPlease enter Email 4: ");
+			scanf("%s", newContact.email_addresses[3]);
+		}
+
+		if(emailChoice == 5)
+		{
+			printf("\nPlease enter Email 5: ");
+			scanf("%s", newContact.email_addresses[4]);
+		}
+
+		if(emailChoice > 5)
+		{
+			printf("\nSorry, you cannot add more than 5 email addresses. "
+			"Should you wish to change an email, please use the edit contact function.");
+		}
+
+	}
+
+
+	//////////////////////////////////////////////////////////
+
+
+	} //Closing Bracket for While Loop
 
 
 	printf("All set! Saving..."); 		//Now we write to the CSV file
+
+
+	//address_book->list = &newContact; //This saves the contact
+
+	//printf("%s", address_book->list->name[0]); //This ensures the name was saved
 
 
 
 	//Open the file in passed Address_Book
 	address_book->fp = fopen("addressbook.csv", "a+");
 
+
 	//Print the name of the contact to the file
-	fprintf(address_book->fp, "%s", address_book->list->name[0]);
+	fprintf(address_book->fp, "%s", newContact.name[0]);
 	fprintf(address_book->fp, ",");					//Print a "," because its a CSV file
 	
 
-	if (numOfPhones > 0)
+	if (phoneChoice > 0) //Print the phone numbers to the file
 	{
-		for (int PhoneCntr = 0; 0 < numOfPhones; PhoneCntr++)
+		for (int PhoneCntr = 0; 0 < phoneChoice; PhoneCntr++)
 		{
-		fprintf(address_book->fp, "%s", address_book->list->phone_numbers[PhoneCntr]);
+		fprintf(address_book->fp, "%s", newContact.phone_numbers[PhoneCntr]);
 		fprintf(address_book->fp, ",");
 		}
 	}
 
 
-	if (numOfEmails > 0)
+	if (emailChoice > 0) //Print the emails to the file
 	{
-		for (int EmailCntr = 0; 0 < numOfEmails; EmailCntr++)
+		for (int EmailCntr = 0; 0 < emailChoice; EmailCntr++)
 		{
-		fprintf(address_book->fp, "%s", address_book->list->email_addresses[EmailCntr]);
+		fprintf(address_book->fp, "%s", newContact.email_addresses[EmailCntr]);
 		fprintf(address_book->fp, ",");
 		}
 	}
+
+
+	fprintf(address_book->fp, "%d", newContact.si_no); //Print si_no to the file
+	fprintf(address_book->fp, ",");
+
+
+
+	fprintf(address_book->fp, "%s", NEXT_ENTRY); //Prints a \n to the CSV file
+
+
 
  	fclose(address_book->fp); //Close the file
 }
+
+
+
+
+
+
+
+
+
 
 Status search(const char *str, AddressBook *address_book, int loop_count, int field, const char *msg, Modes mode)
 {
