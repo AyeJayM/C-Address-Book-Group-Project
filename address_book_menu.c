@@ -13,19 +13,41 @@ extern int arrayLocation;
 
 
 
-/*
+
 int get_option(int type, const char *msg)
 {
-	
-	 * Mutilfuction user intractions like
-	 * Just an enter key detection
-	 * Read an number
-	 * Read a charcter
-	  
+	printf("\n%s\n", msg); //Print the corresponding message from the caller function
 
-	//Fill the code to add above functionality 
+
+	if(type == 1) //We check for a num
+	{
+		int checkInt = scanf("%d",checkInt);
+
+		while (checkInt > 6 || checkInt < 0)
+		{
+			printf("Sorry, that is not a valid input. Please reference the menu options again.");
+			checkInt = scanf("%d", checkInt);
+		}
+
+		return checkInt;
+	}
+
+
+	if(type == 2) //We check for a char
+	{
+		char checkChar = getchar();
+
+		while (checkChar != "Y" || checkChar != "N") //Input Validation
+		{
+			printf("Sorry, that is not a valid input. Enter either Y or N.");
+			checkChar = getchar();
+		}
+
+		return checkChar;
+	}
+
 }
-*/
+
 
 
 /*Status save_prompt(AddressBook *address_book)
@@ -163,7 +185,6 @@ Status menu(AddressBook *address_book)
 
 Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 {
-	/* Add the functionality for adding contacts here */
 
 	ContactInfo newContact;
 	int addMenuChoice;
