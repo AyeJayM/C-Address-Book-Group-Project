@@ -9,6 +9,7 @@
 #include "address_book_menu.h" //Previously was "abk_menus.h"
 #include "address_book.h" //Previously was "abk.k"
 extern int ContactID;
+//extern int arrayLocation;
 
 
 
@@ -54,22 +55,24 @@ int get_option(int type, const char *msg)
 
 
 /*
+
 Status list_contacts(AddressBook *address_book, const char *title, int *index, const char *msg, Modes mode)
 {
 	
-	 * Add code to list all the contacts availabe in address_book.csv file
-	 * Should be menu based
-	 * The menu provide navigation option if the entries increase the page size
+	// * Add code to list all the contacts availabe in address_book.csv file
+	// * Should be menu based
+	// * The menu provide navigation option if the entries increase the page size
 	 
 
 	return e_success;
 }
+
+*/
+
 /*
 
-
-
-/* FOR DEBUG ////////////////////////
-void menu_header(const char *str)
+////////////////////////
+void menu_header(const char *str) //This is called by main_menu()
 {
 	fflush(stdout);
 
@@ -81,12 +84,14 @@ void menu_header(const char *str)
 		printf("#######  %s\n", str);
 	}
 }
-*/////////////////////////
 
+*/
 
+/////////////////////////
 
+/*
 
-/*void main_menu(void) /////////////// DEBUG
+void main_menu(void) // This is called by menu()
 {
 	menu_header("Features:\n");
 
@@ -100,12 +105,13 @@ void menu_header(const char *str)
 	printf("\n");
 	printf("Please select an option: ");
 }
+
 */
 
-
-
-///////////////////////////// DEBUG
 /*
+
+///////////////////////////// 
+
 Status menu(AddressBook *address_book)
 {
 	ContactInfo backup;
@@ -128,7 +134,7 @@ Status menu(AddressBook *address_book)
 		switch (option)
 		{
 			case e_add_contact:
-				// Add your implementation to call add_contacts function here
+				add_contacts(address_book);
 				break;
 			case e_search_contact:
 				search_contact(address_book);
@@ -152,8 +158,8 @@ Status menu(AddressBook *address_book)
 
 	return e_success;
 }
-*/ ////////////////
 
+*/
 
 Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 {
@@ -166,6 +172,7 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	int emailChoice = 0; //Determines which Email will be next entered and displayed
 
 	ContactID++;
+	//arrayLocation++;
 	newContact.si_no = ContactID;
 
 	while(addMenuChoice != 0)
@@ -408,8 +415,8 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	{
 		for (int j = 0; j < emailChoice; j++)
 		{
-		fprintf(address_book->fp, "%s", newContact.email_addresses[j]);
-		fprintf(address_book->fp, ",");
+			fprintf(address_book->fp, "%s", address_book->list->email_addresses[j]);
+			fprintf(address_book->fp, ",");
 		}
 	}
 	
