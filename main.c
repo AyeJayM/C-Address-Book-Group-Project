@@ -16,15 +16,19 @@ int main(void)
 	ContactInfo contactsArray[30];
 	address_book.list = contactsArray;
 
+
 	ContactInfo defaultInfo;
 	strcpy(defaultInfo.name[0] , "0");
 
 	for (int init = 0; init < 30; init++)
 	{
 		strcpy(contactsArray[init].name[0] , defaultInfo.name[0]); // This is how we will determine if a contact is "empty"...
-	}										   		 // If the "name" fields begins with a "0"
+	}										   		 			   // If the "name" fields begins with a "0"
 
-	printf("%s", address_book.list[ContactID].name[0]);
+	
+	printf("%s", address_book.list[4].name[0]);
+
+
 	/* Status ret;
 
 	// Load the file from .csv file if any
@@ -42,6 +46,14 @@ int main(void)
 		}
 	}
 	*/
-	//add_contacts(&address_book);
+
+
+	add_contacts(&address_book);
+
+	printf("%s\n", address_book.list[arrayLocation-1].name[0]);
+	printf("%s\n", address_book.list[arrayLocation-1].phone_numbers[0]);
+	printf("%s\n", address_book.list[arrayLocation-1].email_addresses[0]);
+	printf("%d\n", address_book.list[arrayLocation-1].si_no);
+
 	return 0;
 }

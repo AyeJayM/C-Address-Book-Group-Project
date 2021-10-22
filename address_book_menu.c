@@ -9,7 +9,7 @@
 #include "address_book_menu.h" //Previously was "abk_menus.h"
 #include "address_book.h" //Previously was "abk.k"
 extern int ContactID;
-//extern int arrayLocation;
+extern int arrayLocation;
 
 
 
@@ -172,7 +172,6 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	int emailChoice = 0; //Determines which Email will be next entered and displayed
 
 	ContactID++;
-	//arrayLocation++;
 	newContact.si_no = ContactID;
 
 	while(addMenuChoice != 0)
@@ -386,7 +385,8 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	printf("\nAll set! Saving...\n"); 		//Now we write to the CSV file
 
 
-	address_book->list = &newContact; //This saves the contact
+	//address_book->list = &newContact; //This saves the contact //WORK IN PROGRESS
+	address_book->list[arrayLocation] = newContact;
 
 	
 	//Open the file in passed Address_Book
@@ -394,9 +394,10 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	
 
 	//Print the name of the contact to the file
-	fprintf(address_book->fp, "%s", address_book->list->name[0]);
-	fprintf(address_book->fp, ",");					//Print a "," because its a CSV file
-	
+	//fprintf(address_book->fp, "%s", address_book->list->name[0]);
+	//fprintf(address_book->fp, ",");					//Print a "," because its a CSV file
+	fprintf(address_book->fp, "%s", newContact.name[0]);
+	fprintf(address_book->fp, ",");
 
 
 	
@@ -405,7 +406,9 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 		
 		for (int i = 0; i < phoneChoice; i++)
 			{		
-				fprintf(address_book->fp, "%s", address_book->list->phone_numbers[i]);
+				//fprintf(address_book->fp, "%s", address_book->list->phone_numbers[i]);
+				//fprintf(address_book->fp, ",");
+				fprintf(address_book->fp, "%s", newContact.phone_numbers[i]);
 				fprintf(address_book->fp, ",");
 			}
 	}
@@ -415,14 +418,16 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	{
 		for (int j = 0; j < emailChoice; j++)
 		{
-			fprintf(address_book->fp, "%s", address_book->list->email_addresses[j]);
+			//fprintf(address_book->fp, "%s", address_book->list->email_addresses[j]);
+			//fprintf(address_book->fp, ",");
+			fprintf(address_book->fp, "%s", newContact.email_addresses[j]);
 			fprintf(address_book->fp, ",");
 		}
 	}
 	
 
 
-	fprintf(address_book->fp, "%d", address_book->list->si_no); //Print si_no to the file
+	fprintf(address_book->fp, "%d", newContact.si_no); //Print si_no to the file
 	fprintf(address_book->fp, ",");
 
 	
@@ -431,6 +436,8 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	fprintf(address_book->fp, "%s", "\n"); //Prints a \n to the CSV file
 
 	fclose(address_book->fp); //Close the file
+
+	arrayLocation++; //Moves us to the next available ContactInfo in the array
 
  	
 }
