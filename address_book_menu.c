@@ -76,10 +76,20 @@ int get_option(int type, const char *msg)
 */
 
 
-/*
 
-Status list_contacts(AddressBook *address_book, const char *title, int *index, const char *msg, Modes mode)
+
+Status list_contacts(AddressBook *address_book)
 {
+	char listOption;
+
+	do
+	{
+		
+
+
+
+		
+	} while (listOption != "q");
 	
 	// * Add code to list all the contacts availabe in address_book.csv file
 	// * Should be menu based
@@ -89,7 +99,7 @@ Status list_contacts(AddressBook *address_book, const char *title, int *index, c
 	return e_success;
 }
 
-*/
+
 
 /*
 
