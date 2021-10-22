@@ -21,12 +21,12 @@ int get_option(int type, const char *msg)
 
 	if(type == 1) //We check for a num
 	{
-		int checkInt = scanf("%d",checkInt);
+		int checkInt = scanf("%d", &checkInt);
 
 		while (checkInt > 6 || checkInt < 0)
 		{
 			printf("Sorry, that is not a valid input. Please reference the menu options again.");
-			checkInt = scanf("%d", checkInt);
+			checkInt = scanf("%d", &checkInt);
 		}
 
 		return checkInt;
