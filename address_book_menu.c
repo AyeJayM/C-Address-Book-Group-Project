@@ -139,13 +139,14 @@ Status add_contacts(AddressBook *address_book)
 Status search(const char *str, AddressBook *address_book, int loop_count, int field, const char *msg, Modes mode)
 {	
 	/* Add the functionality for adding contacts here */
-	
+
+
 }
 
 Status search_contact(AddressBook *address_book)
 {
 	char str[255];
-	char line[255];
+	//char line[255];
 	printf("######## Search Contact: \n\n");
 	printf("0. Back\n");
 	printf("1. Name\n");
@@ -174,16 +175,21 @@ Status search_contact(AddressBook *address_book)
 			gets(str);
 			char temp[255];
 			
-			
+			//size of entire addr book
 			for(int i =0; i< sizeof fp +1; i++){
-				fscanf(fp, "%s", temp);
-				if(strcmp(str, temp)== 0){
-					break;
-					
+				//per contact
+				for(int ii = 0; ii < sizeof(address_book->list->name)/sizeof(address_book->list->name[ii]); ii++){
+					fscanf(fp, "%s", temp);
+					if(strcmp(str, temp)== 0){
+						//print out contact
+						printf("%s\n", address_book->list[i]);
+						return e_success;
+						
+					}
 				}
 			}
 			//if we come out of this it means it wasn't found
-			return e_fail;
+			break;
 		
 		case 2:
 			//phone no.
@@ -191,30 +197,37 @@ Status search_contact(AddressBook *address_book)
 			gets(str);
 			char temp[255];
 			
-			
 			for(int i =0; i< sizeof fp +1; i++){
-				fscanf(fp, "%s", temp);
-				if(strcmp(str, temp)== 0){
-					break;
-					
+				//per contact
+				for(int ii = 0; ii < sizeof(address_book->list->phone_numbers)/sizeof(address_book->list->phone_numbers[ii]); ii++){
+					fscanf(fp, "%s", temp);
+					if(strcmp(str, temp)== 0){
+						//print out contact
+						printf("%s\n", address_book->list[i]);
+						return e_success;
+						
+					}
 				}
 			}
-			return e_no_match;
+			break;
 		case 3:
 			//email
 			printf("Please enter the EMAIL of the contact you want to search for:\n");
 			gets(str);
 			char temp[255];
-			
-			
 			for(int i =0; i< sizeof fp +1; i++){
-				fscanf(fp, "%s", temp);
-				if(strcmp(str, temp)== 0){
-					break;
-					
+				//per contact
+				for(int ii = 0; ii < sizeof(address_book->list->email_addresses)/sizeof(address_book->list->email_addresses[ii]); ii++){
+					fscanf(fp, "%s", temp);
+					if(strcmp(str, temp)== 0){
+						//print out contact
+						printf("%s\n", address_book->list[i]);
+						return e_success;
+						
+					}
 				}
 			}
-			return e_no_match;
+			break;
 			
 		case 4:
 			//serail no.
@@ -224,19 +237,23 @@ Status search_contact(AddressBook *address_book)
 			char temp[255];
 			
 			for(int i =0; i< sizeof fp +1; i++){
-				//word by word
-				fscanf(fp, "%s", temp);
-				if(strcmp(str, temp)== 0){
-					break;
-					
+				//per contact
+				for(int ii = 0; ii < sizeof(address_book->list->si_no)/sizeof(address_book->list->si_no[i]); ii++){
+					fscanf(fp, "%s", temp);
+					if(strcmp(str, temp)== 0){
+						//print out contact
+						printf("%s\n", address_book->list[i]);
+						return e_success;
+						
+					}
 				}
 			}
-			return e_no_match;
+			break;
 
 		default:
 			
 			if(contactNo < 0 || contactNo > 4){
-				printf("This is an invalid number.");
+				printf("This is an invalid number.\n");
 				//recursively calls it.
 				search_contact(address_book);
 				break;
@@ -244,11 +261,8 @@ Status search_contact(AddressBook *address_book)
 
 
 	}
-	
-	//print out contact
-
-	fgets(line, "%s", address_book);
-	return e_success;
+	printf("Contact Was Not Found\n.");
+	return e_fail;
 	
 }
 
