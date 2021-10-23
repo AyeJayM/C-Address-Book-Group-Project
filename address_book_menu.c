@@ -37,7 +37,7 @@ int get_option(int type, const char *msg)
 	{
 		char checkChar = getchar();
 
-		while (checkChar != "Y" || checkChar != "N") //Input Validation
+		while (checkChar != 'Y' || checkChar != 'N') //Input Validation
 		{
 			printf("Sorry, that is not a valid input. Enter either Y or N.");
 			checkChar = getchar();
@@ -81,9 +81,69 @@ int get_option(int type, const char *msg)
 Status list_contacts(AddressBook *address_book)
 {
 	char listOption;
+	int contONE = 0;
+	int contTWO = 1;
+    int contTHREE = 2;
 
 	do
 	{
+		printf("\n######  Address Book  ######\n"
+		       "######  List Contacts:\n");
+		
+		printf("\n%s\n", address_book->list[contONE].name[0]);
+		printf("%s\n", address_book->list[contONE].phone_numbers[0]);
+		printf("%s\n", address_book->list[contONE].email_addresses[0]);
+		printf("%d\n", address_book->list[contONE].si_no);
+
+		printf("\n%s\n", address_book->list[contTWO].name[0]);
+		printf("%s\n", address_book->list[contTWO].phone_numbers[0]);
+		printf("%s\n", address_book->list[contTWO].email_addresses[0]);
+		printf("%d\n", address_book->list[contTWO].si_no);
+
+		printf("\n%s\n", address_book->list[contTHREE].name[0]);
+		printf("%s\n", address_book->list[contTHREE].phone_numbers[0]);
+		printf("%s\n", address_book->list[contTHREE].email_addresses[0]);
+		printf("%d\n", address_book->list[contTHREE].si_no);
+
+		printf("\nPress [q] to Quit, n to display the next page, or p to display"
+				" the previous page.  |  ");
+		listOption = getchar();
+
+
+
+		while(listOption != 'q' || listOption != 'n' || listOption != 'q')
+		{
+			printf("\nSorry, that is not a valid input. Please note input is case sensitive."
+				"Please input either q, n, or p.  |  ");
+
+			listOption = getchar();
+		}
+
+
+		if( (listOption = 'n') && (contONE < 27) ) //Next page
+		{
+			contONE += 3;
+			contTWO += 3;
+			contTHREE += 3;
+		}
+		else if ( (listOption = 'n') && (contONE == 27) ) //Do not allow past the upper limit of address book ([29])
+		{
+			printf("\nYou have reached the end of the contact list.\n");
+		}
+
+
+		if( (listOption = 'q') && (contONE > 0) )
+		{
+			contONE -= 3;
+			contTWO -= 3;
+			contTHREE -= 3;
+		}
+
+
+
+		
+
+
 		
 
 
@@ -415,9 +475,7 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 
 	printf("\nAll set! Saving...\n"); 		//Now we write to the CSV file
 
-
-	//address_book->list = &newContact; //This saves the contact //WORK IN PROGRESS
-	address_book->list[arrayLocation] = newContact;
+	address_book->list[arrayLocation] = newContact; //This saves the contact
 
 	
 	//Open the file in passed Address_Book
