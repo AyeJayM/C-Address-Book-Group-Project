@@ -131,20 +131,19 @@ Status list_contacts(AddressBook *address_book)
 			printf("\nYou have reached the end of the contact list.\n");
 		}
 
+		///////////////////////////////////
 
-		if( (listOption = 'q') && (contONE > 0) )
+		if( (listOption = 'q') && (contONE > 0) ) //Previous page
 		{
 			contONE -= 3;
 			contTWO -= 3;
 			contTHREE -= 3;
 		}
+		else if ( (listOption = 'q') && (contONE == 0) )
+		{
+			printf("\nYou are at the beginning of the contact list.");
+		}
 
-
-
-		
-
-
-		
 
 
 
