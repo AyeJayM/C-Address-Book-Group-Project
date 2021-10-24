@@ -19,28 +19,24 @@ extern int arrayLocation;
 
 int get_option(int type, const char *msg)
 {
-	printf("\n%s\n", msg); //Print the corresponding message from the caller function
+
+	printf("%s", msg); //Print the corresponding message from the caller function
 
 
 	if(type == 1) //We check for a num
 	{
-		char checkInt[20];
-		fgets(checkInt, sizeof(checkInt), stdin);
-		int userInt = checkInt[0] - '1';
-
 		
+		int checkInt;
+		scanf(" %d", &checkInt);
 
-		//while (checkInt > 6 || checkInt < 0)
-		while (userInt > 6 || userInt < 0)
+		while ( (checkInt > 6) || (checkInt < 0 ) )
 		{
 			printf("Sorry, that is not a valid input. Please reference the menu options again.");
-			//checkInt = scanf("%d", &checkInt);
-			fgets(checkInt, sizeof(checkInt), stdin);
-			int userInt = checkInt[0] - '1';
-
+			scanf("%d", &checkInt);
+			
 		}
 
-		return userInt;
+		return checkInt;
 	}
 
 
@@ -49,7 +45,7 @@ int get_option(int type, const char *msg)
 		char checkChar;
 		checkChar = getchar();
 
-		while (checkChar != 'Y' || checkChar != 'N') //Input Validation
+		while ( (checkChar != 'Y') || (checkChar != 'N') ) //Input Validation
 		{
 			printf("Sorry, that is not a valid input. Enter either Y or N.");
 			checkChar = getchar();
@@ -249,10 +245,9 @@ Status menu(AddressBook *address_book)
 	{
 		main_menu();
 
-
 		option = get_option(NUM, "");
 		
-
+		
 		if ((address_book-> count == 0) && (option != e_add_contact))
 		{
 			get_option(NONE, "No entries found!!. Would you like to add? Use Add Contacts");
@@ -298,8 +293,6 @@ Status menu(AddressBook *address_book)
 
 Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 {
-	int d;
-	while ((d = getchar()) != '\n' && d != EOF) { }
 	
 
 	ContactInfo newContact;
@@ -398,8 +391,7 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	
 	printf("\n\nPlease select an option: ");
 	
-	//fgets(addMenuChoice, 10, stdin);	//User inputs their menu choice
-	scanf("%d", &addMenuChoice);
+	scanf(" %d",&addMenuChoice);
 
 	while(addMenuChoice > 3 || addMenuChoice < 0) //Validate Menu Input
 	{
