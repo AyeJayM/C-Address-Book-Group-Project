@@ -298,7 +298,7 @@ Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
 	
 
 	ContactInfo newContact;
-	int addMenuChoice;
+	int addMenuChoice = 1;
 	int nameChoice  = 0; //Determines when to display name.
 	int phoneChoice = 0; //Determines which Phone Number will be next entered and displayed
 	int emailChoice = 0; //Determines which Email will be next entered and displayed
@@ -542,7 +542,7 @@ Status search(const char *str, AddressBook *address_book, int loop_count, int fi
 
 Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 {
-	char str[255];
+	char str[32];
 	const char *type;
 	switch (mode)
 	{
@@ -586,7 +586,7 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 			//Search for name
 			printf("Enter the Name:\n");
 			scanf("%s", str);
-			char temp[255];
+			char temp[32];
 			
 			//size of entire addr book
 			for(int i =0; i< sizeof address_book->fp +1; i++){
@@ -613,7 +613,7 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 			//phone no.
 			printf("Please enter the PHONE NUMBER of the contact you want to search for:\n");
 			scanf("%s", str);
-			char temp[255];
+			char temp[32];
 			
 			for(int i =0; i< sizeof address_book->fp +1; i++){
 				//per contact
@@ -638,7 +638,7 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 			//email
 			printf("Please enter the EMAIL of the contact you want to search for:\n");
 			scanf("%s", str);
-			char temp[255];
+			char temp[32];
 			for(int i =0; i< sizeof address_book->fp +1; i++){
 				//per contact
 				for(int ii = 0; ii < sizeof(address_book->list->email_addresses)/sizeof(address_book->list->email_addresses[ii]); ii++){
