@@ -109,7 +109,7 @@ Status menu(AddressBook *address_book)
 				/* Add your implementation to call add_contacts function here */
 				break;
 			case e_search_contact:
-				search_contact(address_book);
+				search_contact(address_book, e_search);
 				break;
 			case e_edit_contact:
 				edit_contact(address_book);
@@ -136,18 +136,30 @@ Status add_contacts(AddressBook *address_book)
 	/* Add the functionality for adding contacts here */
 }
 
-Status search(const char *str, AddressBook *address_book, int loop_count, int field, const char *msg, Modes mode)
+/*
+Status search(const char *str, AddressBook *address_book, int array_index, Modes mode)
 {	
-	/* Add the functionality for adding contacts here */
-
-
+	
 }
+*/
 
-Status search_contact(AddressBook *address_book)
+Status search_contact(AddressBook *address_book, Modes mode)
 {
 	char str[255];
-	//char line[255];
-	printf("######## Search Contact: \n\n");
+	const char *type;
+	switch (mode)
+	{
+	case e_delete:
+		type = "to Delete by";
+		break;
+	case e_edit:
+		type = "to Edit by";
+		break;
+	default:
+		char type[255] = "to Search by";
+		break;
+	}
+	printf("######## Search Contact %s: \n\n", type);
 	printf("0. Back\n");
 	printf("1. Name\n");
 	printf("2. Phone No\n");
@@ -203,6 +215,7 @@ Status search_contact(AddressBook *address_book)
 					fscanf(fp, "%s", temp);
 					if(strcmp(str, temp)== 0){
 						//print out contact
+						//need fancy format? printf("SI No.\tName\t\t");
 						printf("%s\n", address_book->list[i]);
 						return e_success;
 						
@@ -230,17 +243,18 @@ Status search_contact(AddressBook *address_book)
 			break;
 			
 		case 4:
-			//serail no.
+			//serial no.
 			printf("Please enter the SERIAL NUMBER of the contact you want to search for:\n");
-			gets(str);
+			int sino;
+			gets(sino);
 			
-			char temp[255];
-			
+			//char temp[255];
+			int num;
 			for(int i =0; i< sizeof fp +1; i++){
 				//per contact
-				for(int ii = 0; ii < sizeof(address_book->list->si_no)/sizeof(address_book->list->si_no[i]); ii++){
-					fscanf(fp, "%s", temp);
-					if(strcmp(str, temp)== 0){
+				for(int ii = 0; ii < sizeof(address_book->list->si_no)/sizeof(address_book->list->si_no[ii]); ii++){
+					fscanf(fp, "%d", num);
+					if(sino == num){
 						//print out contact
 						printf("%s\n", address_book->list[i]);
 						return e_success;
@@ -254,8 +268,6 @@ Status search_contact(AddressBook *address_book)
 			
 			if(contactNo < 0 || contactNo > 4){
 				printf("This is an invalid number.\n");
-				//recursively calls it.
-				search_contact(address_book);
 				break;
 			}
 
