@@ -18,18 +18,36 @@ int main(void)
 
 
 	ContactInfo defaultInfo;
-	strcpy(defaultInfo.name[0] , "0");
+	strcpy(defaultInfo.name[0] , "?");
+	strcpy(defaultInfo.phone_numbers[0], "?");
+	strcpy(defaultInfo.email_addresses[0], "?");
 
-	for (int init = 0; init < 30; init++)
+	for (int init = 0; init < 30; init++) // Inititalize name field to our null status
 	{
 		strcpy(contactsArray[init].name[0] , defaultInfo.name[0]); // This is how we will determine if a contact is "empty"...
-	}										   		 			   // If the "name" fields begins with a "0"
+	}										   		 			   // If the "name" fields begins with a "?"
 
+
+	for (int phoneInit = 0; phoneInit < 30; phoneInit++) //Initialize phone numbers to our null status
+	{
+		for (int k = 0; k < 5; k++)
+		{
+			strcpy(contactsArray[phoneInit].phone_numbers[k], defaultInfo.phone_numbers[0]);
+		}
+	}
+
+
+	for (int emailInit = 0; emailInit < 30; emailInit++) // Intialize email addresses to our null status
+	{
+		for (int j  = 0; j < 5 ; j++)
+		{
+			strcpy(contactsArray[emailInit].email_addresses[j], defaultInfo.email_addresses[0]);
+		}
+	}
 	
-	printf("%s", address_book.list[4].name[0]);
 
+	Status ret;
 
-	/* Status ret;
 
 	// Load the file from .csv file if any
 	ret = load_file(&address_book);
@@ -45,15 +63,6 @@ int main(void)
 			save_prompt(&address_book);
 		}
 	}
-	*/
-
-
-	add_contacts(&address_book);
-
-	printf("%s\n", address_book.list[arrayLocation-1].name[0]);
-	printf("%s\n", address_book.list[arrayLocation-1].phone_numbers[0]);
-	printf("%s\n", address_book.list[arrayLocation-1].email_addresses[0]);
-	printf("%d\n", address_book.list[arrayLocation-1].si_no);
-
+	
 	return 0;
-}
+} // saving the array location to the first line of the .csv
