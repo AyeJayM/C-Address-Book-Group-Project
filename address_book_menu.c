@@ -28,6 +28,7 @@ int get_option(int type, const char *msg)
 		
 		int checkInt;
 		scanf(" %d", &checkInt);
+		fflush(stdin);
 
 		while ( (checkInt > 6) || (checkInt < 0 ) )
 		{
