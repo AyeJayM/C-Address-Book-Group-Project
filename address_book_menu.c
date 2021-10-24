@@ -16,7 +16,7 @@ int get_option(int type, const char *msg)
 	 * Just an enter key detection
 	 * Read an number
 	 * Read a charcter
-	 */ 
+	 */
 
 	/* Fill the code to add above functionality */
 }
@@ -47,11 +47,11 @@ Status save_prompt(AddressBook *address_book)
 
 Status list_contacts(AddressBook *address_book, const char *title, int *index, const char *msg, Modes mode)
 {
-	/* 
+	/*
 	 * Add code to list all the contacts availabe in address_book.csv file
 	 * Should be menu based
 	 * The menu provide navigation option if the entries increase the page size
-	 */ 
+	 */
 
 	return e_success;
 }
@@ -149,6 +149,130 @@ Status search_contact(AddressBook *address_book)
 Status edit_contact(AddressBook *address_book)
 {
 	/* Add the functionality for edit contacts here */
+	int num;
+	char name[32];
+	char phone[32];
+	char email[32];
+	char newName[32];
+	char newPhone[32];
+	char newEmail[32];
+	menu_header("Edit Contact:\n");
+	printf("Please select an option to edit your contacts by or return to the menu:\n");
+	printf("0. Menu\n");
+	printf("1. Name\n");
+	printf("2. Phone Number\n");
+	printf("3. Email Address\n");
+  scanf("%d", &num);
+
+	switch(num) {
+		case 0:
+						menu(address_book);
+						break;
+		case 1:
+						int flag = 1;
+						while(flag) {
+						printf("Enter the name of the contact to edit\n");
+						scanf("%s", &name);
+						for(int i = 0; i < address_book->count; i++) {
+							if(strcmp(*address_book->list[i].name, name) == 0) {
+								flag = 0;
+								printf("Edit the name of the contact: %s\n", *address_book->list[i].name);
+								scanf("%s", &newName);
+								strcpy(*address_book->list[i].name, newName);
+								printf("Would you like to edit the phone number: Enter y for yes or n for no\n");
+								char select;
+								scanf("%s", &select);
+								if(select == "y") {
+									printf("Edit the phone number: %s\n", *address_book->list[i].phone_numbers);
+									scanf("%s", &newPhone);
+									strcpy(*address_book->list[i].phone_numbers, newPhone);
+								}
+								printf("Would you like to edit the email address: Enter y for yes or n for no\n");
+								scanf("%s", &select);
+								if(select == "y") {
+									printf("Edit the email address: %s\n", *address_book->list[i].email_addresses);
+									scanf("%s", &newEmail);
+									strcpy(*address_book->list[i].email_addresses, newEmail);
+								}
+							printf("Edit(s) successful");
+							}
+						}
+						if(flag == 1) {
+							printf("No match for inputed name: %s\n", name);
+						}
+						}
+						break;
+		case 2:
+						int flag = 1;
+						while(flag) {
+						printf("Enter the phone number of the contact to edit\n");
+						scanf("%s", &phone);
+						for(int i = 0; i < address_book->count; i++) {
+							if(strcmp(*address_book->list[i].phone_numbers, phone) == 0) {
+								flag = 0;
+								printf("Edit the phone number: %s\n", *address_book->list[i].phone_numbers);
+								scanf("%s", &newPhone);
+								strcpy(*address_book->list[i].phone_numbers, newPhone);
+								printf("Would you like to edit the name of the contact: Enter y for yes or n for no\n");
+								char select;
+								scanf("%s", &select);
+								if(select == "y") {
+									printf("Edit the name of the contact: %s\n", *address_book->list[i].name);
+									scanf("%s", &newName);
+									strcpy(*address_book->list[i].name, newName);
+								}
+								printf("Would you like to edit the email address: Enter y for yes or n for no\n");
+								scanf("%s", &select);
+								if(select == "y") {
+									printf("Edit the email address: %s\n", *address_book->list[i].email_addresses);
+									scanf("%s", &newEmail);
+									strcpy(*address_book->list[i].email_addresses, newEmail);
+								}
+							printf("Edit(s) successful");
+							}
+						}
+						if(flag == 1) {
+							printf("No match for inputed phone number: %s\n", phone);
+						}
+						}
+						break;
+		case 3:
+		int flag = 1;
+						while(flag) {
+						printf("Enter the email address to edit\n");
+						scanf("%s", &email);
+						for(int i = 0; i < address_book->count; i++) {
+							if(strcmp(*address_book->list[i].email_addresses, email) == 0) {
+								flag = 0;
+								printf("Edit the name of the email: %s\n", *address_book->list[i].email_addresses);
+								scanf("%s", &newEmail);
+								strcpy(*address_book->list[i].email_addresses, newEmail);
+								printf("Would you like to edit the phone number: Enter y for yes or n for no\n");
+								char select;
+								scanf("%s", &select);
+								if(select == "y") {
+									printf("Edit the phone number: %s\n", *address_book->list[i].phone_numbers);
+									scanf("%s", &newPhone);
+									strcpy(*address_book->list[i].phone_numbers, newPhone);
+								}
+								printf("Would you like to edit the name: Enter y for yes or n for no\n");
+								scanf("%s", &select);
+								if(select == "y") {
+									printf("Edit the name of the contact: %s\n", *address_book->list[i].name);
+									scanf("%s", &newName);
+									strcpy(*address_book->list[i].name, newName);
+								}
+							printf("Edit(s) successful");
+							}
+						}
+						if(flag == 1) {
+							printf("No match for inputed email address: %s\n", email);
+						}
+						}
+						break;
+	}
+	printf("Going back to main menu\n");
+	menu(address_book);
 }
 
 Status delete_contact(AddressBook *address_book)
