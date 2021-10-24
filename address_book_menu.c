@@ -139,7 +139,7 @@ Status add_contacts(AddressBook *address_book)
 /*
 Status search(const char *str, AddressBook *address_book, int array_index, Modes mode)
 {	
-	
+	redundant. Anything that can be done here could be called in search_contact
 }
 */
 
@@ -252,6 +252,7 @@ Status search_contact(AddressBook *address_book, Modes mode)
 			int num;
 			for(int i =0; i< sizeof fp +1; i++){
 				//per contact
+																									//error at si_no[ii] expression must have pointer-to-object type but it has type "int" 
 				for(int ii = 0; ii < sizeof(address_book->list->si_no)/sizeof(address_book->list->si_no[ii]); ii++){
 					fscanf(fp, "%d", num);
 					if(sino == num){
