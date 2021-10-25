@@ -163,13 +163,13 @@ Status list_contacts(AddressBook *address_book)
 
 		///////////////////////////////////
 
-		if( (listOption == 'q') && (contONE > 0) ) //Previous page
+		if( (listOption == 'p') && (contONE > 0) ) //Previous page
 		{
 			contONE -= 3;
 			contTWO -= 3;
 			contTHREE -= 3;
 		}
-		else if ( (listOption == 'q') && (contONE == 0) )
+		else if ( (listOption == 'p') && (contONE == 0) )
 		{
 			printf("\nYou are at the beginning of the contact list.");
 		}
