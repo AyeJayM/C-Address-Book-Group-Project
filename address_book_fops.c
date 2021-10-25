@@ -93,7 +93,9 @@ Status save_file(AddressBook *address_book)
 		}
 
 
-}
+		fprintf(address_book->fp, "\n");
+
+	}
 
 	fclose(address_book->fp);
 
