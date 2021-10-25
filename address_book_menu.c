@@ -17,7 +17,7 @@ extern int arrayLocation;
 
 
 
-int get_option(int type, const char *msg)
+int get_option(int type, const char *msg) //Austin's Code
 {
 
 	printf("%s", msg); //Print the corresponding message from the caller function
@@ -102,7 +102,7 @@ Status save_prompt(AddressBook *address_book)
 
 
 
-Status list_contacts(AddressBook *address_book)
+Status list_contacts(AddressBook *address_book) //Austin's Code
 {
 	char listOption;
 	int contONE = 0;
@@ -291,7 +291,7 @@ Status menu(AddressBook *address_book)
 
 
 
-Status add_contacts(AddressBook *address_book) //AUSTIN'S CODE
+Status add_contacts(AddressBook *address_book) //Austin's Code
 {
 	
 
@@ -893,7 +893,7 @@ Status edit_contact(AddressBook *address_book) //Richard's Code
 
 
 
-Status delete_contact(AddressBook *address_book)
+Status delete_contact(AddressBook *address_book) //Kim's Code
 {
 	menu_header("Search Contact to Delete by:"); //printing header
 	printf("0. Back\n");
