@@ -88,8 +88,6 @@ Status save_file(AddressBook *address_book)
 			fprintf(address_book->fp, "%d", address_book->list[printNum].si_no); //Print si_no to the file
 			fprintf(address_book->fp, ",");
 
-			fprintf(address_book->fp, "%s", ","); // Print a new line to the file
-
 		}
 
 
