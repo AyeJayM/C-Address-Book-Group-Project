@@ -770,6 +770,12 @@ Status edit_contact(AddressBook *address_book) //Richard's Code
 						}
 						if(flag == 1) {
 							printf("No match for inputed name: %s\n", name);
+							printf("Would you like to quit? press q to quit or n for no\n");
+							char select;
+							scanf("%s", &select);
+							if(select == 'q') {
+								flag = 0;
+							}
 						}
 						}
 						break;
@@ -812,6 +818,12 @@ Status edit_contact(AddressBook *address_book) //Richard's Code
 						}
 						if(flag == 1) {
 							printf("No match for inputed phone number: %s\n", phone);
+							printf("Would you like to quit? press q to quit or n for no\n");
+							char select;
+							scanf("%s", &select);
+							if(select == 'q') {
+								flag = 0;
+							}
 						}
 						}
 						break;
@@ -854,6 +866,12 @@ Status edit_contact(AddressBook *address_book) //Richard's Code
 						}
 						if(flag == 1) {
 							printf("No match for inputed email address: %s\n", email);
+							printf("Would you like to quit? press q to quit or n for no\n");
+							char select;
+							scanf("%s", &select);
+							if(select == 'q') {
+								flag = 0;
+							}
 						}
 						}
 						break;
