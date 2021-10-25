@@ -142,10 +142,8 @@ Status list_contacts(AddressBook *address_book)
 		{
 			printf("\nSorry, that is not a valid input. Please note input is case sensitive."
 				"Please input either q, n, or p.  |  ");
-
 			int d;
 			while ((d = getchar()) != '\n' && d != EOF) { }
-
 			listOption = getc(stdin);
 		}
 		*/
