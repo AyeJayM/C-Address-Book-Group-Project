@@ -566,7 +566,7 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 
 	int contactNo;
 	scanf("%d", &contactNo);
-	printf("contact number is: %d", contactNo);
+	//printf("contact number is: %d", contactNo);
 	
 	//address_book->fp = fopen("address_book", "r");
 	/*
@@ -589,10 +589,11 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 			printf("Enter the Name:\n");
 			scanf("%s", str);
 			char temp[32];
-
+			if(str != NULL){
 			//size of entire addr book
-			for(int i = 0; i< sizeof address_book->fp +1; i++){
+			for(int i = 0; i< 5; i++){
 				//per contact
+					
 					printf("%d\n", i);
 					printf("%p\n", address_book->list[i].name);
 					if(strcmp(*address_book->list[i].name, str) == 0) {
@@ -606,6 +607,7 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 
 					}
 			}
+			}
 			//if we come out of this it means it wasn't found
 			break;
 		}
@@ -615,8 +617,8 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 			printf("Please enter the PHONE NUMBER of the contact you want to search for:\n");
 			scanf("%s", str);
 			char temp[32];
-
-			for(int i =0; i< sizeof address_book->fp +1; i++){
+			if(str != NULL){
+			for(int i =0; i< 5; i++){
 				//per contact
 				//for(int ii = 0; ii < sizeof(address_book->list->phone_numbers)/sizeof(address_book->list->phone_numbers[ii]); ii++){
 					if(strcmp(*address_book->list[i].phone_numbers, str) == 0) {
@@ -631,6 +633,7 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 					}
 				//}
 			}
+			}
 			break;
 		}
 		case 3:
@@ -639,7 +642,8 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 			printf("Please enter the EMAIL of the contact you want to search for:\n");
 			scanf("%s", str);
 			char temp[32];
-			for(int i =0; i< sizeof address_book->fp +1; i++){
+			
+			for(int i =0; i< 5; i++){
 				//per contact
 				//for(int ii = 0; ii < sizeof(address_book->list->email_addresses)/sizeof(address_book->list->email_addresses[ii]); ii++){
 					//fscanf(address_book->fp, "%s", temp);
@@ -654,6 +658,7 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 					}
 				//}
 			}
+			
 			break;
 		}
 		case 4:
@@ -664,8 +669,9 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 			scanf("%d", &sino);
 
 			//char temp[255];
+			
 			int num;
-			for(int i =0; i< sizeof address_book->fp +1; i++){
+			for(int i =0; i< 5; i++){
 				//per contact
 																									//error at si_no[ii] expression must have pointer-to-object type but it has type "int"
 				//for(int ii = 0; ii < sizeof(address_book->list->si_no)/sizeof(address_book->list->si_no); ii++){
@@ -679,6 +685,7 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 
 					}
 				//}
+			
 			}
 			break;
 		}
