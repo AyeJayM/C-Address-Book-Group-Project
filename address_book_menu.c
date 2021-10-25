@@ -591,9 +591,10 @@ Status search_contact(AddressBook *address_book, Modes mode) // Isabella's Code
 			char temp[32];
 
 			//size of entire addr book
-			for(int i =0; i< sizeof address_book->fp +1; i++){
+			for(int i = 0; i< sizeof address_book->fp +1; i++){
 				//per contact
-				
+					printf("%d\n", i);
+					printf("%p\n", address_book->list[i].name);
 					if(strcmp(*address_book->list[i].name, str) == 0) {
 						//print out contact
 
