@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <unistd.h> This is commented out per proffesor's instructions on Teams
+#include <unistd.h> //This is commented out per proffesor's instructions on Teams
 #include <sys/stat.h>
 #include <errno.h>
 #include <ctype.h>
@@ -88,10 +88,12 @@ Status save_file(AddressBook *address_book)
 			fprintf(address_book->fp, "%d", address_book->list[printNum].si_no); //Print si_no to the file
 			fprintf(address_book->fp, ",");
 
+			fprintf(address_book->fp, "\n");
+
 		}
 
 
-		fprintf(address_book->fp, "\n");
+		//fprintf(address_book->fp, "\n");
 
 	}
 

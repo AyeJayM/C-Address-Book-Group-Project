@@ -902,13 +902,117 @@ Status delete_contact(AddressBook *address_book)
 		return e_back;
 		break;
 		case 1:
+		{
+			char name[32];
+			printf("Enter name: ");
+			scanf("%s", name);
+			int flag = 0;
+			int index = 0;
+			for(int i = 0; i < address_book->count; i++) {
+    		    ContactInfo c = address_book->list[i];
+				if(strcmp(name, c.name[0]) == 0) {
+					index = i;
+					flag = 1;
+					break;
+				}
+			}
+			if(flag) {
+				for(int i = index + 1; i < address_book->count; i++) {
+					address_book->list[i - 1] = address_book->list[i];
+				}
+				address_book->count -= 1;
+			}
+			else {
+				return e_no_match;
+			}
+		}
 		break;
 		case 2:
+  		  {
+			char phone[32];
+			printf("Enter phone: ");
+			scanf("%s", phone);
+			int flag = 0;
+			int index = 0;
+			for(int i = 0; i < address_book->count; i++) {
+				ContactInfo c = address_book->list[i];
+				for(int j = 0; j < 5; i++) {
+					if(strcmp(phone, c.phone_numbers[j]) == 0) {
+					index = i;
+					flag = 1;
+					break;
+				}
+        }
+			}
+			if(flag) {
+				for(int i = index + 1; i < address_book->count; i++) {
+					address_book->list[i - 1] = address_book->list[i];
+				}
+				address_book->count -= 1;
+			}
+			else {
+				return e_no_match;
+			}
+		}
 		break;
 		case 3:
+    	{
+			char email[32];
+			printf("Enter Email ID: ");
+			scanf("%s", email);
+			int flag = 0;
+			int index = 0;
+			for(int i = 0; i < address_book->count; i++) {
+				ContactInfo c = address_book->list[i];
+				for(int j = 0; j < 5; i++) {
+					if(strcmp(email, c.email_addresses[j]) == 0) {
+					index = i;
+					flag = 1;
+					break;
+				}
+        }
+			}
+			if(flag) {
+				for(int i = index + 1; i < address_book->count; i++) {
+					address_book->list[i - 1] = address_book->list[i];
+				}
+				address_book->count -= 1;
+			}
+			else {
+				return e_no_match;
+			}
+		}
 		break;
 		case 4:
+   		 {
+			int sid;
+			printf("Enter si no: ");
+			scanf("%d", &sid);
+			int flag = 0;
+			int index = 0;
+			for(int i = 0; i < address_book->count; i++) {
+       			ContactInfo c = address_book->list[i];
+				if(sid == c.si_no) {
+					index = i;
+					flag = 1;
+					break;
+				}
+			}
+			if(flag) {
+				for(int i = index + 1; i < address_book->count; i++) {
+					address_book->list[i - 1] = address_book->list[i];
+				}
+				address_book->count -= 1;
+			}
+			else {
+				return e_no_match;
+			}
+		}
 		break;
 	}
+	save_file(address_book);
+	return e_success;
+	
+	
 	/* Add the functionality for delete contacts here */
 }
