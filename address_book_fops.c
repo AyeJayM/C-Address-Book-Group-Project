@@ -77,13 +77,13 @@ Status save_file(AddressBook *address_book)
 			{
 				if ( address_book->list[printNum].email_addresses[emailLoop][0] != '?')
 				{
-				fprintf(address_book->fp, "%s", address_book->list[printNum].phone_numbers[emailLoop]);
+				fprintf(address_book->fp, "%s", address_book->list[printNum].email_addresses[emailLoop]);
 				fprintf(address_book->fp, ",");
 				}
 			}
 		}
 
-		if (address_book->list[printNum].name[0][0] != 'q')
+		if (address_book->list[printNum].name[0][0] != '?')
 		{
 			fprintf(address_book->fp, "%d", address_book->list[printNum].si_no); //Print si_no to the file
 			fprintf(address_book->fp, ",");
