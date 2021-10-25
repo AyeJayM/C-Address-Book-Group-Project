@@ -33,21 +33,67 @@ Status load_file(AddressBook *address_book)
 
 Status save_file(AddressBook *address_book)
 {
-	/*
-	 * Write contacts back to file.
-	 * Re write the complete file currently
-	 */ 
-	address_book->fp = fopen(DEFAULT_FILE, "w");
+	
+	 // Write contacts back to file.
+	 //Re write the complete file currently
+	 
+	address_book->fp = fopen("addressbook.csv", "w");
 
 	if (address_book->fp == NULL)
 	{
 		return e_fail;
 	}
 
-	/* 
-	 * Add the logic to save the file
-	 * Make sure to do error handling
-	 */ 
+
+	for (int printNum = 0; printNum < 30; printNum++)
+	{
+
+		//Print the name of the contact to the file
+		if(address_book->list[printNum].name[0][0] != '?') //Check for our null status
+		{
+			fprintf(address_book->fp, "%s", address_book->list[printNum].name[0]);
+			fprintf(address_book->fp, ",");					//Print a "," because its a CSV file
+		}
+
+
+	
+		if(address_book->list[printNum].phone_numbers[0][0] != '?') //Prints the phone numbers
+		{		
+			for (int numbersLoop = 0; numbersLoop < 5; numbersLoop++)
+			{
+				if ( address_book->list[printNum].phone_numbers[numbersLoop][0] != '?')
+				{
+				fprintf(address_book->fp, "%s", address_book->list[printNum].phone_numbers[numbersLoop]);
+				fprintf(address_book->fp, ",");
+				}
+			}
+		}
+		
+
+
+		if(address_book->list[printNum].email_addresses[0][0] != '?') // Prints the email addresses
+		{		
+			for (int emailLoop = 0; emailLoop < 5; emailLoop++)
+			{
+				if ( address_book->list[printNum].email_addresses[emailLoop][0] != '?')
+				{
+				fprintf(address_book->fp, "%s", address_book->list[printNum].phone_numbers[emailLoop]);
+				fprintf(address_book->fp, ",");
+				}
+			}
+		}
+
+		if (address_book->list[printNum].name[0][0] != '?')
+		{
+			fprintf(address_book->fp, "%d", address_book->list[printNum].si_no); //Print si_no to the file
+			fprintf(address_book->fp, ",");
+
+			fprintf(address_book->fp, "%s", ","); // Print a new line to the file
+
+		}
+
+
+}
 
 	fclose(address_book->fp);
 
