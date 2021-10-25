@@ -12,11 +12,6 @@ extern int ContactID;
 extern int arrayLocation;
 
 
-
-
-
-
-
 int get_option(int type, const char *msg)
 {
 
